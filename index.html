@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta name="description" content="PLURAL — AI Chat Platform. Unity With AI.">
+  <title>PLURAL — Unity With AI</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- PDFJS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- Highlight.js for Code Highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- JSZip CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    (async function() {
+      try {
+        const res = await fetch('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js');
+        const blob = await res.blob();
+        pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+      } catch(e) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+    })();
+  </script>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Spline Viewer Module -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════ LANDING PAGE ═══════════ -->
+  <div class="landing-container" id="landingPage">
+    <!-- Scroll Progress Indicator -->
+    <div id="scrollProgress"></div>
+    
+    <!-- Parallax Background Glow Orbs -->
+    <div class="parallax-orb orb-1"></div>
+    <div class="parallax-orb orb-2"></div>
+
+    <!-- Cybernetic Canvas Background -->
+    <canvas id="cyberNetworkCanvas"></canvas>
+
+    <!-- Standalone Scroll Image Sequence Intro Page -->
+    <div class="scroll-sequence-intro" id="scrollSeqIntro">
+      <div class="scroll-sequence-headroom"></div>
+      <div class="scroll-sequence-sticky">
+        <canvas id="scrollSeqCanvas"></canvas>
+        <div class="scroll-sequence-indicator" id="scrollSeqIndicator">
+          <div class="mouse-icon">
+            <span class="mouse-wheel"></span>
+          </div>
+          <span class="scroll-text">Scroll to explore</span>
+        </div>
+      </div>
+    </div>
+
+    <header class="landing-header">
+      <div class="landing-brand">
+        <img src="assets/logo.png" alt="PLURAL Logo" class="landing-logo-img" style="height: 28px; width: auto; object-fit: contain; margin-right: 8px;">
+        <span class="landing-logo-text">PLURAL</span>
+      </div>
+      <nav class="landing-nav">
+        <a href="#features" class="landing-nav-link">Features</a>
+        <a href="#council-flow" class="landing-nav-link">Consensus</a>
+        <a href="#robot" class="landing-nav-link">Whobee</a>
+      </nav>
+      <button class="landing-header-btn" id="landingHeaderBtn">
+        Launch Console
+      </button>
+    </header>
+
+    <div class="landing-scroll-content">
+      <!-- HERO SECTION -->
+      <section class="landing-hero" id="robot">
+        <div class="hero-left reveal-on-scroll">
+          <div class="hero-badge">
+            <span class="badge-icon">✦</span>
+            <span>Version 2.0 Available Now</span>
+          </div>
+          <h1 class="hero-title">
+            Plural.<br>
+            <span class="text-glow-purple">Unity</span> With <span class="text-glow-cyan">AI</span>.
+          </h1>
+          <p class="hero-description">
+            A multi-perspective AI platform that synthesizes clarity from chaos. Four specialized expert agents collaborate, debate, and deliver single-source consensus on your complex tasks.
+          </p>
+          <div class="hero-actions">
+            <button class="landing-primary-btn" id="landingEnterBtn">
+              <span>Get Started</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">4</span>
+              <span class="stat-label">AI Perspectives</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Autonomous Debate</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Hallucinations</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="robot-spline-container">
+            <spline-viewer url="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode" events-target="global"></spline-viewer>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES SECTION -->
+      <section class="landing-features" id="features">
+        <div class="section-header reveal-on-scroll">
+          <h2 class="section-title">Core Capabilities</h2>
+          <p class="section-subtitle">
+            An entire suite of specialized workspaces, engineered to elevate your productivity and decision accuracy.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- The Council -->
+          <div class="tilt-card feature-card reveal-on-scroll">
+            <div class="glare-effect"></div>
+            <div class="card-glow purple"></div>
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg>
+            </div>
+            <h3 class="card-title">The Council</h3>
+            <p class="card-desc">
+              Four specialized AI minds (Strategist, Analyst, Creative, Devil's Advocate) debate your prompt to synthesize a balanced, multi-perspective master consensus.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Multi-Agent</span>
+              <span class="card-tag">Synthesized Response</span>
+            </div>
+          </div>
+
+          <!-- AI Clone -->
+          <div class="tilt-card feature-card reveal-on-scroll">
+            <div class="glare-effect"></div>
+            <div class="card-glow cyan"></div>
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3 class="card-title">AI Clone</h3>
+            <p class="card-desc">
+              Train your own personalized clone via interactive style profiling. Your clone mimics your tone, format preference, and reasoning model.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Interactive Profiling</span>
+              <span class="card-tag">Personalized Tone</span>
+            </div>
+          </div>
+
+          <!-- AI Twin -->
+          <div class="tilt-card feature-card reveal-on-scroll">
+            <div class="glare-effect"></div>
+            <div class="card-glow purple"></div>
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="card-title">AI Twin</h3>
+            <p class="card-desc">
+              Activate an autonomous companion. It acts on your goals, intercepts complex queries, and guides your chat session.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Autonomous Agent</span>
+              <span class="card-tag">Continuous Help</span>
+            </div>
+          </div>
+
+          <!-- Knowledge Vault -->
+          <div class="tilt-card feature-card reveal-on-scroll">
+            <div class="glare-effect"></div>
+            <div class="card-glow cyan"></div>
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3 class="card-title">Knowledge Vault</h3>
+            <p class="card-desc">
+              Upload PDFs, crawl URLs, or write notes. Plural queries this semantic base instantly, infusing answers with precise domain truth.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">RAG System</span>
+              <span class="card-tag">Document Scraping</span>
+            </div>
+          </div>
+
+          <!-- Dev Mode -->
+          <div class="tilt-card feature-card reveal-on-scroll">
+            <div class="glare-effect"></div>
+            <div class="card-glow green-glow"></div>
+            <div class="card-icon dev-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="card-title">Dev Mode</h3>
+            <p class="card-desc">
+              Unleash deep code analysis and architectural reviews. Run automatic checks for UX usability, technical flaws, and security breaches.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Code Review</span>
+              <span class="card-tag">Usability Audit</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONSENSUS FLOW DIAGRAM SECTION -->
+             <div class="section-header reveal-on-scroll">
+          <h2 class="section-title">The Consensus Pipeline</h2>
+          <p class="section-subtitle">How Plural synthesizes four distinct expert angles into one final response.</p>
+        </div>
+
+        <div class="pipeline-container reveal-on-scroll">
+          <!-- Animated SVG Connections -->
+          <svg class="pipeline-svg" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.8" />
+                <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0.8" />
+              </linearGradient>
+              <filter id="svgGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            
+            <!-- Connection Lines -->
+            <!-- Input to 4 Agents -->
+            <path class="pipeline-line line-to-agent-1" d="M120,200 C220,200 220,70 300,70" />
+            <path class="pipeline-line line-to-agent-2" d="M120,200 C220,200 220,150 300,150" />
+            <path class="pipeline-line line-to-agent-3" d="M120,200 C220,200 220,240 300,240" />
+            <path class="pipeline-line line-to-agent-4" d="M120,200 C220,200 220,320 300,320" />
+            
+            <!-- 4 Agents to Synthesis -->
+            <path class="pipeline-line line-from-agent-1" d="M520,70 C600,70 600,200 680,200" />
+            <path class="pipeline-line line-from-agent-2" d="M520,150 C600,150 600,200 680,200" />
+            <path class="pipeline-line line-from-agent-3" d="M520,240 C600,240 600,200 680,200" />
+            <path class="pipeline-line line-from-agent-4" d="M520,320 C600,320 600,200 680,200" />
+            
+            <!-- Synthesis to Output -->
+            <path class="pipeline-line line-to-output" d="M860,200 L900,200" />
+          </svg>
+
+          <!-- HTML Node Overlays (placed absolutely above the SVG container) -->
+          <div class="pipeline-nodes">
+            <!-- Input Node -->
+            <div class="p-node node-input" style="left: 20px; top: 165px;">
+              <div class="p-node-label">User Query</div>
+              <div class="p-node-sub">Prompt Ingest</div>
+            </div>
+            
+            <!-- Agent Nodes -->
+            <div class="p-node node-agent strategist" style="left: 300px; top: 35px;">
+              <div class="p-node-icon">🧠</div>
+              <div class="p-node-details">
+                <span class="p-node-title">UX Strategist</span>
+                <span class="p-node-role">Architecture</span>
+              </div>
+            </div>
+            
+            <div class="p-node node-agent analyst" style="left: 300px; top: 115px;">
+              <div class="p-node-icon">🔍</div>
+              <div class="p-node-details">
+                <span class="p-node-title">Tech Analyst</span>
+                <span class="p-node-role">Sanity & QA</span>
+              </div>
+            </div>
+            
+            <div class="p-node node-agent creative" style="left: 300px; top: 205px;">
+              <div class="p-node-icon">🎨</div>
+              <div class="p-node-details">
+                <span class="p-node-title">Creative Mind</span>
+                <span class="p-node-role">Growth Copy</span>
+              </div>
+            </div>
+            
+            <div class="p-node node-agent devil" style="left: 300px; top: 285px;">
+              <div class="p-node-icon">😈</div>
+              <div class="p-node-details">
+                <span class="p-node-title">Devil's Advocate</span>
+                <span class="p-node-role">Privacy Risk</span>
+              </div>
+            </div>
+
+            <!-- Synthesis Node -->
+            <div class="p-node node-synthesis" style="left: 680px; top: 165px;">
+              <div class="p-node-label">Consensus Engine</div>
+              <div class="p-node-sub">GLM-5.1 Synthesis</div>
+            </div>
+
+            <!-- Final Node -->
+            <div class="p-node node-output" style="left: 900px; top: 165px;">
+              <div class="p-node-label">Unified Answer</div>
+              <div class="p-node-sub">Consensus Output</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="landing-footer">
+        <div class="author-card reveal-on-scroll">
+          <div class="author-header">
+            <span class="author-label">✦ Our CEO</span>
+            <h3 class="author-name">Made By <span class="highlight-name">Ansh Mishra</span></h3>
+          </div>
+          
+          <p class="author-bio">
+            I'm 12 years old, from India 🇮🇳. I started learning Web3, crypto, and blockchain when I was just 7–8 years old. I've been in the crypto space for 2.5 years now — and I've learned SO much during that time. All credit goes to my DAD — he supported me from day one and taught me so many things, way earlier than most kids even hear about crypto. I'm also a content creator 💙 — sharing what I learn, because knowledge should be free and open!
+          </p>
+          
+          <div class="author-links">
+            <a href="https://x.com/eth_ansh" target="_blank" class="author-link-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+              <span>@eth_ansh</span>
+            </a>
+            <a href="https://www.linkedin.com/in/0xanshdev/" target="_blank" class="author-link-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              <span>@0xanshdev</span>
+            </a>
+            <a href="https://ansh-dev.lovable.app/" target="_blank" class="author-link-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>ansh-dev.lovable.app</span>
+            </a>
+          </div>
+        </div>
+        <p class="footer-copyright">&copy; 2026 PLURAL. Unity With AI. Built for the next generation of AI collaboration.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ═══════════ NAVBAR ═══════════ -->
+  <nav class="navbar">
+    <button class="navbar-hamburger" id="hamburgerBtn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+    <div class="navbar-brand">
+      <span class="navbar-logo">PLURAL</span>
+      <span class="navbar-tagline">Unity With AI.</span>
+    </div>
+    <div class="navbar-right">
+      <button class="style-profile-btn" id="styleProfileBtn" style="display:none;">
+        Style Profile
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ MAIN LAYOUT ═══════════ -->
+  <div class="app-layout" id="appLayout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img class="sidebar-brand-img" src="assets/logo.png" alt="PLURAL — Unity With AI">
+      </div>
+
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="council" id="modeCouncil">
+          <span class="mode-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg></span>
+          <div class="mode-btn-info">
+            <span class="mode-btn-name">The Council</span>
+            <span class="mode-btn-tagline">Unity With AI.</span>
+          </div>
+        </button>
+        <button class="mode-btn" data-mode="clone" id="modeClone">
+          <span class="mode-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
+          <div class="mode-btn-info">
+            <span class="mode-btn-name">AI Clone</span>
+            <span class="mode-btn-tagline">It thinks how you think.</span>
+          </div>
+        </button>
+        <button class="mode-btn mode-btn-vault" data-mode="vault" id="modeVault">
+          <span class="mode-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+          <div class="mode-btn-info">
+            <span class="mode-btn-name">Knowledge Vault</span>
+            <span class="mode-btn-tagline">Your knowledge. Their intelligence.</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="sidebar-section-divider"></div>
+
+      <div class="dev-mode-selector">
+        <button class="mode-btn mode-btn-dev" data-mode="dev" id="modeDev">
+          <span class="mode-btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          <div class="mode-btn-info">
+            <span class="mode-btn-name">Dev Mode</span>
+            <span class="mode-btn-tagline">We find what you missed.</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="new-chat-section">
+        <button class="new-chat-btn" id="newChatBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          New Chat
+        </button>
+      </div>
+
+      <div class="chat-history">
+        <div class="chat-history-label">Recent Chats</div>
+        <div class="chat-search-container">
+          <input type="search" id="chatSearchInput" name="chatSearch" placeholder="Search chats..." readonly onfocus="this.removeAttribute('readonly');">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <div id="chatList"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-section" id="userProfileSection">
+          <span class="user-email" id="userEmailDisplay">loading...</span>
+          <button class="logout-btn" id="logoutBtn" title="Logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+            </svg>
+            Logout
+          </button>
+        </div>
+        <button class="settings-btn" id="settingsBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+          Settings
+        </button>
+      </div>
+    </aside>
+
+    <!-- ── Sidebar Mobile Backdrop ── -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ── Main Content ── -->
+    <main class="main-content">
+      <!-- Chat View (Visible in normal modes) -->
+      <div class="chat-view" id="chatView">
+        <!-- Mode Header -->
+        <div class="mode-header-container">
+          <div class="mode-header">
+            <div class="mode-header-left">
+              <span class="mode-header-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg></span>
+              <div class="mode-title-select">
+                <span id="modeTitle">The Council</span>
+                <span class="dropdown-arrow">▼</span>
+              </div>
+              <div id="modeSubtitle" style="display: none;"></div>
+              <div class="mode-badges" id="modeBadges"></div>
+            </div>
+            <div class="mode-header-right">
+              <button class="header-icon-btn" id="headerSettingsBtn" title="Settings">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+                </svg>
+              </button>
+              <button class="header-icon-btn" id="headerHistoryBtn" title="History">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5M12 7v5l4 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+          <!-- Welcome screen / messages rendered dynamically -->
+        </div>
+
+        <!-- Input Bar -->
+        <div class="input-bar">
+          <div class="vault-status-badge-container">
+            <span class="vault-status-badge empty" id="vaultStatusBadge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Vault Empty</span>
+          </div>
+
+          <div class="input-panel">
+            <div class="input-panel-top" id="twinToggleBar">
+              <div class="twin-toggle-container">
+                <span class="twin-toggle-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span class="twin-toggle-label">Twin Mode</span>
+                <label class="switch">
+                  <input type="checkbox" id="twinToggleCheckbox">
+                  <span class="slider round"></span>
+                </label>
+                <span class="badge badge-purple" id="twinActiveBadge" style="display: none;">✦ Twin Active</span>
+              </div>
+              <button class="panel-collapse-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Image Preview Strip -->
+            <div class="image-preview-strip" id="imagePreviewStrip"></div>
+            <div class="input-panel-bottom">
+              <div class="input-box-wrapper" id="inputWrapper">
+                <button class="image-attach-btn" id="imageAttachBtn" title="Attach image">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                </button>
+                <input type="file" id="imageFileInput" accept="image/*" multiple hidden>
+                <button class="web-search-toggle-btn" id="webSearchToggleBtn" title="Enable Web Search">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                    <path d="M2 12h20"/>
+                  </svg>
+                </button>
+                <textarea id="messageInput"
+                          placeholder="Type a message..."
+                          rows="1"
+                          autofocus></textarea>
+                <button class="send-btn" id="sendBtn" disabled>Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Lightbox -->
+      <div class="image-lightbox" id="imageLightbox">
+        <img src="" alt="Full size image" id="lightboxImage">
+      </div>
+
+      <!-- Vault View (Visible only when Vault Mode is active) -->
+      <div class="vault-view" id="vaultView" style="display: none;">
+        <!-- Left Panel: Upload + Manage -->
+        <div class="vault-sidebar-panel">
+          <div class="vault-panel-header">
+            <span class="vault-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+            <div class="vault-panel-title-group">
+              <div class="vault-panel-title">KNOWLEDGE VAULT</div>
+              <div class="vault-panel-tagline">"Your knowledge. Their intelligence."</div>
+            </div>
+          </div>
+
+          <div class="vault-upload-buttons">
+            <button class="vault-upload-btn pdf-btn" id="vaultAddPdfBtn">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> Add PDF
+            </button>
+            <input type="file" id="vaultPdfInput" accept=".pdf" style="display: none;">
+
+            <button class="vault-upload-btn url-btn" id="vaultAddUrlBtn">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span> Add URL/Link
+            </button>
+
+            <button class="vault-upload-btn note-btn" id="vaultAddNoteBtn">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> Add Note/Text
+            </button>
+          </div>
+
+          <!-- Hidden Upload Forms -->
+          <div class="vault-form-container" id="vaultFormContainer" style="display: none;">
+            <!-- URL Input Form -->
+            <div class="vault-form" id="vaultUrlForm" style="display: none;">
+              <input type="text" id="vaultUrlInput" placeholder="Paste any link (e.g. https://site.com)">
+              <div class="vault-form-actions">
+                <button class="vault-action-btn confirm" id="vaultConfirmUrlBtn">Extract</button>
+                <button class="vault-action-btn cancel" id="vaultCancelUrlBtn">Cancel</button>
+              </div>
+            </div>
+            
+            <!-- Note Input Form -->
+            <div class="vault-form" id="vaultNoteForm" style="display: none;">
+              <textarea id="vaultNoteInput" placeholder="Type or paste your notes here..."></textarea>
+              <div class="vault-form-actions">
+                <button class="vault-action-btn confirm" id="vaultConfirmNoteBtn">Save Note</button>
+                <button class="vault-action-btn cancel" id="vaultCancelNoteBtn">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="vault-status-log" id="vaultStatusLog"></div>
+
+          <div class="vault-items-section">
+            <div class="vault-items-title">Saved Items (<span id="vaultCount">0</span>/10):</div>
+            <div class="vault-items-list" id="vaultItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Chat with Vault -->
+        <div class="vault-chat-panel">
+          <div class="vault-chat-header">
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Chatting with your Knowledge Vault</span>
+          </div>
+          <div class="chat-messages" id="vaultChatMessages">
+            <div class="welcome-screen">
+              <div class="welcome-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+              <h2 class="welcome-title">Knowledge Vault Chat</h2>
+              <p class="welcome-subtitle">Ask questions directly about your uploaded PDFs, URLs, and notes. The AI will answer based on your vault contents.</p>
+            </div>
+          </div>
+          <div class="input-bar vault-input-bar">
+            <div class="input-panel">
+              <div class="input-panel-bottom">
+                <div class="input-box-wrapper" id="vaultInputWrapper">
+                  <textarea id="vaultMessageInput" placeholder="Ask anything about your vault..." rows="1"></textarea>
+                  <button class="send-btn" id="vaultSendBtn" disabled>Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dev Mode View (Visible in dev mode) -->
+      <div class="dev-view" id="devModeView" style="display: none;">
+        <!-- Left Panel: Inputs & Past Audits -->
+        <div class="dev-left-panel">
+          <div class="dev-panel-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> DEV MODE</div>
+          <div class="dev-panel-tagline">"We find what you missed."</div>
+
+          <div class="dev-input-group">
+            <label for="devUrlInput">URL</label>
+            <input type="text" id="devUrlInput" placeholder="paste link here">
+          </div>
+
+          <div class="dev-input-group">
+            <label for="devCodeInput">Code</label>
+            <textarea id="devCodeInput" placeholder="paste code here" class="monospace"></textarea>
+          </div>
+
+          <button class="btn-dev-run" id="devRunBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Run PLURAL Analysis</button>
+
+          <div class="dev-status-log" id="devStatusLog">Ready for analysis.</div>
+
+          <div class="dev-past-reports-section">
+            <div class="dev-past-reports-title">Past Audits:</div>
+            <div class="dev-past-reports-list" id="devPastReportsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Audit Workspace -->
+        <div class="dev-right-panel">
+          <!-- Collapsible thinking panel -->
+          <div class="dev-thinking-panel" id="devThinkingPanel">
+            <div class="dev-thinking-header">
+              <span>▼ See Agent Analysis</span>
+            </div>
+            <div class="dev-agent-cards">
+              <div class="dev-agent-card" id="dev-agent-card-0">
+                <div class="dev-agent-card-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 3px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> UX &amp; Product Strategist</div>
+                <div class="dev-agent-content streaming" id="dev-agent-content-0">Waiting to analyze...</div>
+              </div>
+              <div class="dev-agent-card" id="dev-agent-card-1">
+                <div class="dev-agent-card-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 3px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Technical Analyst</div>
+                <div class="dev-agent-content streaming" id="dev-agent-content-1">Waiting to analyze...</div>
+              </div>
+              <div class="dev-agent-card" id="dev-agent-card-2">
+                <div class="dev-agent-card-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 3px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Growth Analyst</div>
+                <div class="dev-agent-content streaming" id="dev-agent-content-2">Waiting to analyze...</div>
+              </div>
+              <div class="dev-agent-card" id="dev-agent-card-3">
+                <div class="dev-agent-card-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 3px;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 15h8"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg> Devil's Advocate</div>
+                <div class="dev-agent-content streaming" id="dev-agent-content-3">Waiting to analyze...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Final Report Card -->
+          <div class="dev-report-card" id="devReportCard" style="display: none;">
+            <div class="dev-report-header">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> PLURAL DEV REPORT</span>
+            </div>
+            
+            <!-- Scores overview -->
+            <div class="dev-scores-grid">
+              <div class="dev-score-item">
+                <div class="dev-score-label-row">
+                  <span>UX Score</span>
+                  <span class="dev-score-num">0.0/10</span>
+                </div>
+                <div class="dev-score-bar-bg">
+                  <div class="dev-score-bar-fill" id="dev-ux-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="dev-score-item">
+                <div class="dev-score-label-row">
+                  <span>Technical Score</span>
+                  <span class="dev-score-num">0.0/10</span>
+                </div>
+                <div class="dev-score-bar-bg">
+                  <div class="dev-score-bar-fill" id="dev-tech-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="dev-score-item">
+                <div class="dev-score-label-row">
+                  <span>Security Score</span>
+                  <span class="dev-score-num">0.0/10</span>
+                </div>
+                <div class="dev-score-bar-bg">
+                  <div class="dev-score-bar-fill" id="dev-sec-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="dev-score-item">
+                <div class="dev-score-label-row">
+                  <span>Growth Score</span>
+                  <span class="dev-score-num">0.0/10</span>
+                </div>
+                <div class="dev-score-bar-bg">
+                  <div class="dev-score-bar-fill" id="dev-growth-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overall score big meter -->
+            <div class="dev-overall-box">
+              <span class="dev-overall-label">Overall PLURAL Rating:</span>
+              <span class="dev-overall-value" id="devOverallValue">0.0/10</span>
+            </div>
+
+            <!-- Report markdown content -->
+            <div class="dev-final-report-content" id="devFinalReportContent"></div>
+
+            <div class="dev-report-actions">
+              <button class="btn btn-primary green" id="devCopyBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Report</button>
+              <button class="btn btn-primary green" id="devSaveBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Report</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════ CLONE ONBOARDING MODAL ═══════════ -->
+  <div class="modal-overlay" id="cloneOnboarding">
+    <div class="modal-card cyan">
+      <div class="modal-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+      <div class="modal-title">AI Clone Setup</div>
+      <div class="modal-subtitle">Let's learn how you think.</div>
+
+      <!-- Step 1 -->
+      <div class="onboarding-step active" data-step="1">
+        <div class="onboarding-question">How do you prefer explanations?</div>
+        <div class="onboarding-options" data-key="explanationStyle">
+          <button class="onboarding-option" data-value="Simple & Short">Simple &amp; Short</button>
+          <button class="onboarding-option" data-value="Detailed & Deep">Detailed &amp; Deep</button>
+          <button class="onboarding-option" data-value="Step by Step">Step by Step</button>
+          <button class="onboarding-option" data-value="Story/Analogy style">Story/Analogy style</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="onboarding-step" data-step="2">
+        <div class="onboarding-question">How much detail do you prefer?</div>
+        <div class="onboarding-slider-container">
+          <div class="onboarding-slider-labels">
+            <span>Minimal</span>
+            <span>Exhaustive</span>
+          </div>
+          <input type="range" class="onboarding-slider" id="cloneDetailSlider" min="1" max="10" value="5">
+          <div class="onboarding-slider-value" id="cloneDetailValue">5</div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="onboarding-step" data-step="3">
+        <div class="onboarding-question">Which type of examples do you understand best?</div>
+        <div class="onboarding-options" data-key="examplePreference">
+          <button class="onboarding-option" data-value="Real world cases">Real world cases</button>
+          <button class="onboarding-option" data-value="Technical examples">Technical examples</button>
+          <button class="onboarding-option" data-value="Analogies">Analogies</button>
+          <button class="onboarding-option" data-value="Numbers & Data">Numbers &amp; Data</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="onboarding-step" data-step="4">
+        <div class="onboarding-question">What is your communication style?</div>
+        <div class="onboarding-options" data-key="communicationStyle">
+          <button class="onboarding-option" data-value="Casual Hinglish">Casual Hinglish</button>
+          <button class="onboarding-option" data-value="Formal English">Formal English</button>
+          <button class="onboarding-option" data-value="Short bullets">Short bullets</button>
+          <button class="onboarding-option" data-value="Conversational">Conversational</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cloneOnboardingBack" style="display:none;">Back</button>
+        <button class="btn btn-primary cyan" id="cloneOnboardingNext">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ USER SIGNUP ONBOARDING MODAL ═══════════ -->
+  <div class="modal-overlay" id="userOnboarding">
+    <div class="modal-card purple">
+      <div class="modal-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="modal-title">Welcome to PLURAL</div>
+      <div class="modal-subtitle">Let's configure your profile.</div>
+
+      <!-- Step 1: User Profile -->
+      <div class="onboarding-step active" data-step="1">
+        <div class="onboarding-question">What is your name?</div>
+        <input type="text" id="onboardName" placeholder="Enter your name..." class="onboard-input">
+        
+        <div class="onboarding-question">Preferred Language?</div>
+        <select id="onboardLang" class="onboard-select">
+          <option value="English">English</option>
+          <option value="Hindi">Hindi (हिंदी)</option>
+          <option value="Hinglish">Hinglish (Hindi in English script)</option>
+          <option value="Spanish">Spanish (Español)</option>
+          <option value="French">French (Français)</option>
+          <option value="German">German (Deutsch)</option>
+        </select>
+      </div>
+
+      <!-- Step 2: NVIDIA Key -->
+      <div class="onboarding-step" data-step="2">
+        <div class="onboarding-question">Enter your NVIDIA API Key</div>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+          PLURAL uses high-performance NVIDIA NIM models. By using your personal API key, you will avoid server rate limits and enjoy 100% free, private sessions.
+        </p>
+        <input type="password" id="onboardApiKey" placeholder="nvapi-..." class="onboard-input" autocomplete="off">
+        
+        <div class="apiKeyGuide">
+          <button class="btn-guide-toggle" id="btnGuideToggle">
+            <span>How to get your free NVIDIA API Key?</span>
+            <span class="guide-toggle-arrow">▼</span>
+          </button>
+          <div class="guide-content hidden" id="guideContent">
+            <ol class="guide-steps">
+              <li>
+                Go to the official <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">NVIDIA NIM Console</a> and log in/sign up.
+              </li>
+              <li>
+                Click the green <strong>"Get API Key"</strong> button on the dashboard interface.
+                <img src="assets/nvidia_nim_dashboard.jpg" alt="NVIDIA NIM Dashboard Guide" class="guide-img">
+              </li>
+              <li>
+                Copy the generated key (starts with <code>nvapi-</code>) and paste it into the input box above.
+                <img src="assets/nvidia_nim_key_popup.jpg" alt="NVIDIA NIM API Key Popup Guide" class="guide-img">
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="onboardBack" style="display:none;">Back</button>
+        <button class="btn btn-primary purple" id="onboardNext">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SETTINGS MODAL ═══════════ -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-card purple">
+      <div class="modal-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </div>
+      <div class="modal-title">Settings</div>
+      <div class="modal-subtitle">Update your profile and configurations.</div>
+
+      <div class="onboarding-question" style="margin-top: 20px;">Your Name</div>
+      <input type="text" id="settingsName" placeholder="Enter your name..." class="onboard-input">
+      
+      <div class="onboarding-question">Preferred Language</div>
+      <select id="settingsLang" class="onboard-select">
+        <option value="English">English</option>
+        <option value="Hindi">Hindi (हिंदी)</option>
+        <option value="Hinglish">Hinglish (Hindi in English script)</option>
+        <option value="Spanish">Spanish (Español)</option>
+        <option value="French">French (Français)</option>
+        <option value="German">German (Deutsch)</option>
+      </select>
+
+      <div class="onboarding-question">NVIDIA API Key</div>
+      <input type="password" id="settingsApiKey" placeholder="nvapi-..." class="onboard-input" autocomplete="off">
+      
+      <div class="apiKeyGuide">
+        <button class="btn-guide-toggle" id="btnSettingsGuideToggle">
+          <span>How to get your free NVIDIA API Key?</span>
+          <span class="guide-toggle-arrow">▼</span>
+        </button>
+        <div class="guide-content hidden" id="settingsGuideContent">
+          <ol class="guide-steps">
+            <li>
+              Go to the official <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">NVIDIA NIM Console</a>.
+            </li>
+            <li>
+              Click the green <strong>"Get API Key"</strong> button on the dashboard interface.
+              <img src="assets/nvidia_nim_dashboard.jpg" alt="NVIDIA NIM Dashboard Guide" class="guide-img">
+            </li>
+            <li>
+              Copy the generated key (starts with <code>nvapi-</code>) and paste it above.
+              <img src="assets/nvidia_nim_key_popup.jpg" alt="NVIDIA NIM API Key Popup Guide" class="guide-img">
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 24px;">
+        <button class="btn btn-ghost" id="settingsCloseBtn">Close</button>
+        <button class="btn btn-primary purple" id="settingsSaveBtn">Save Changes ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TWIN ONBOARDING MODAL ═══════════ -->
+  <div class="modal-overlay" id="twinOnboarding">
+    <div class="modal-card">
+      <div class="modal-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="modal-title">Activate your AI Twin?</div>
+      <div class="modal-subtitle">You, but smarter.</div>
+
+      <!-- Confirm -->
+      <div class="onboarding-step active" data-step="0">
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="twinOnboardingLater">Maybe Later</button>
+          <button class="btn btn-primary" id="twinOnboardingEnable">Enable</button>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="onboarding-step" data-step="1">
+        <div class="onboarding-question">What is your primary goal?</div>
+        <textarea class="onboarding-textarea" id="twinGoal" placeholder="Describe your primary goal..." rows="3"></textarea>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="onboarding-step" data-step="2">
+        <div class="onboarding-question">What is your biggest struggle?</div>
+        <textarea class="onboarding-textarea" id="twinStruggle" placeholder="What do you find most challenging..." rows="3"></textarea>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="onboarding-step" data-step="3">
+        <div class="onboarding-question">What is your profession, domain, or field of study?</div>
+        <textarea class="onboarding-textarea" id="twinProfession" placeholder="E.g. Software developer, UX designer, medical student, content creator..." rows="3"></textarea>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="onboarding-step" data-step="4">
+        <div class="onboarding-question">Describe your preferred communication style.</div>
+        <textarea class="onboarding-textarea" id="twinCommStyle" placeholder="E.g. Concise and technical, academic and detailed, blunt and direct, creative..." rows="3"></textarea>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="onboarding-step" data-step="5">
+        <div class="onboarding-question">How honest should the feedback be?</div>
+        <div class="onboarding-slider-container">
+          <div class="onboarding-slider-labels">
+            <span>Gentle</span>
+            <span>Brutally Honest</span>
+          </div>
+          <input type="range" class="onboarding-slider" id="twinHonestySlider" min="0" max="10" value="7">
+          <div class="onboarding-slider-value" id="twinHonestyValue">7</div>
+        </div>
+      </div>
+
+      <div class="modal-actions" id="twinStepActions" style="display:none;">
+        <button class="btn btn-ghost" id="twinOnboardingStepBack">Back</button>
+        <button class="btn btn-primary" id="twinOnboardingStepNext">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STYLE PROFILE DRAWER ═══════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="styleProfileDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Style Profile</span>
+      <button class="drawer-close" id="drawerClose"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="drawer-content" id="drawerContent">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+  <!-- ═══════════ TOAST CONTAINER ═══════════ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ═══════════ AUTHENTICATION SCREEN ═══════════ -->
+  <div class="auth-screen" id="authScreen" style="display: flex;">
+    <div class="auth-card">
+      <div class="auth-logo-wrapper">
+        <img class="auth-logo-img" src="assets/logo.png" alt="PLURAL">
+      </div>
+      <form class="auth-form" id="authForm">
+        <div class="auth-input-group">
+          <label for="authEmail">Email Address</label>
+          <input type="email" id="authEmail" required placeholder="name@example.com">
+        </div>
+        <div class="auth-input-group">
+          <label for="authPassword">Password</label>
+          <input type="password" id="authPassword" required placeholder="••••••••">
+        </div>
+        <div class="auth-error-msg" id="authErrorMsg"></div>
+        <div class="auth-actions">
+          <button type="submit" class="auth-btn login-btn" id="loginBtn">Login</button>
+          <button type="button" class="auth-btn signup-btn" id="signupBtn">Sign Up</button>
+        </div>
+      </form>
+      <div class="auth-info-msg" id="authInfoMsg"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
