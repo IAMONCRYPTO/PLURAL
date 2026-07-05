@@ -75,6 +75,14 @@ async function build() {
   );
   fs.writeFileSync(path.join(distDir, 'index.html'), html);
 
+  // 6. Copy _redirects for Netlify (if exists)
+  const redirectsSrc = path.join(__dirname, '_redirects');
+  const redirectsDest = path.join(distDir, '_redirects');
+  if (fs.existsSync(redirectsSrc)) {
+    console.log('Copying _redirects for Netlify...');
+    fs.copyFileSync(redirectsSrc, redirectsDest);
+  }
+
   console.log('Build completed successfully! Files written to /dist');
 }
 
