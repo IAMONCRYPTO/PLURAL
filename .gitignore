@@ -3,3 +3,6 @@ dist/
 .env
 .DS_Store
 *.log
+x-reply-bot/node_modules/
+x-reply-bot/cookies.json
+x-reply-bot/completed.txt
