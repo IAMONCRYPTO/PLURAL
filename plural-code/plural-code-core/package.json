@@ -1,0 +1,12 @@
+{
+  "name": "plural-code-core",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "diff": "^5.2.0"
+  },
+  "optionalDependencies": {
+    "keytar": "^7.9.0"
+  }
+}
