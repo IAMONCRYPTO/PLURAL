@@ -5131,3 +5131,8 @@ input:checked + .slider:before {
   filter: none !important;
 }
 
+/* Hide glowing cosmic background orbs in AMOLED mode */
+.theme-amoled .parallax-orb {
+  display: none !important;
+}
+
