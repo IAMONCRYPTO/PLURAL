@@ -1,112 +1,126 @@
-# 🌌 PLURAL — Unity With AI
+# PLURAL — Unity With AI
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PLURAL-SYSTEM_V2.0-7C3AED?style=for-the-badge&logo=cpu&logoColor=white" alt="System Version" />
-  <img src="https://img.shields.io/badge/ENGINE-MULTI_AGENT_CONSENSUS-06B6D4?style=for-the-badge&logo=gitbook&logoColor=white" alt="Engine Type" />
-  <img src="https://img.shields.io/badge/INTERFACE-CYBERNETIC_CONSOLE-EC4899?style=for-the-badge&logo=codepen&logoColor=white" alt="UI Style" />
+  <a href="https://plural-unity.netlify.app/">
+    <img src="assets/logo.png" alt="PLURAL Logo" width="160" />
+  </a>
 </p>
 
 <p align="center">
-  <img src="assets/logo.png" alt="PLURAL 3D Logo" width="220" style="filter: drop-shadow(0 0 35px rgba(124, 58, 237, 0.6));" />
-</p>
-
-<p align="center">
-  <b>"Clarity Synthesized from Chaos. Unity Achieved through Debate."</b><br />
-  <sub>PLURAL is an ultra-futuristic, multi-perspective AI platform that coordinates specialized agent personas to debate, challenge, and refine inputs into a single-source consensus.</sub>
+  <a href="https://plural-unity.netlify.app/">
+    <img src="https://img.shields.io/badge/Live%20Demo-plural--unity.netlify.app-7C3AED?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo" />
+  </a>
+  <img src="https://img.shields.io/badge/Platform-Web%20%2F%20Desktop-06B6D4?style=for-the-badge&logo=electron&logoColor=white" alt="Platform" />
+  <img src="https://img.shields.io/badge/Version-2.0.0-EC4899?style=for-the-badge" alt="Version" />
 </p>
 
 ---
 
-## ⚡ The Architecture: Multi-Agent Consensus Loop
+## Overview
 
-Rather than accepting a single LLM output, PLURAL splits execution into a **cognitive debate loop**. Personas inspect, criticize, and rebuild prompts recursively before presenting the synthesized truth.
+**PLURAL** is a multi-perspective artificial intelligence platform designed to synthesize balanced, single-source consensus from complex user inquiries. Instead of relying on a single LLM output, PLURAL orchestrates a collaborative debate among four specialized AI agents (The Council), challenges their conclusions with a Devil's Advocate persona, and delivers a unified, high-integrity synthesis.
+
+*   **Live Application:** [https://plural-unity.netlify.app/](https://plural-unity.netlify.app/)
+*   **Documentation:** [REACT_SETUP.md](file:///d:/PLURAL/REACT_SETUP.md)
+
+---
+
+## System Architecture
+
+PLURAL utilizes a layered multi-agent loop to refine prompt execution:
 
 ```mermaid
 graph TD
-    User([User Input Prompt]) --> Planner[Chief Coordinator]
+    User([User Prompt]) --> Planner[Chief Coordinator]
     
-    subgraph Cognitive Chamber [The Council Debate Area]
-        Planner -->|Dispatch| Strategist[The Strategist - Execution Paths]
-        Planner -->|Dispatch| Analyst[The Analyst - Edge Cases & Security]
-        Planner -->|Dispatch| Creative[The Creative - Innovations & UI/UX]
-        Planner -->|Dispatch| Adversary[Devil's Advocate - Critiques & Bugs]
+    subgraph Debate Loop [The Council Chamber]
+        Planner -->|Dispatch| Strategist[The Strategist - Architecture & Planning]
+        Planner -->|Dispatch| Analyst[The Analyst - Data & Security]
+        Planner -->|Dispatch| Creative[The Creative - UX/UI & Innovation]
+        Planner -->|Dispatch| Adversary[Devil's Advocate - Critiques & Edge Cases]
         
-        Strategist & Analyst & Creative & Adversary --> Debate{Debate & Refine}
-        Debate -->|Fails Review| Planner
+        Strategist & Analyst & Creative & Adversary --> Consensus{Consensus Check}
+        Consensus -->|Fail| Planner
     end
 
-    Debate -->|Passes Review| Integrator[Final Integrator]
-    Integrator --> Output([Unified Consensus Answer])
+    Consensus -->|Pass| Integrator[Final Integrator]
+    Integrator --> Output([Consensus Response])
 
     style Planner fill:#1e1e2e,stroke:#7C3AED,stroke-width:2px,color:#fff
     style Integrator fill:#1e1e2e,stroke:#EC4899,stroke-width:2px,color:#fff
-    style Debate fill:#2d1b4e,stroke:#F59E0B,stroke-width:2px,color:#fff
+    style Consensus fill:#2d1b4e,stroke:#F59E0B,stroke-width:2px,color:#fff
     style Output fill:#112a1d,stroke:#10B981,stroke-width:2px,color:#fff
 ```
 
 ---
 
-## 🚀 Core Features
+## Key Features
 
-### 🏛️ The Council Room
-Four specialized AI agents collaborate dynamically in the background:
-*   🔮 **The Strategist** (`#7C3AED`) — Formulates high-level architectures, determines package dependencies, and lays out execution trees.
-*   🛡️ **The Analyst** (`#06B6D4`) — Dissects raw code, monitors memory footprint, and exposes hidden structural security threats.
-*   🌸 **The Creative** (`#EC4899`) — Infuses user experience highlights, modern styling schemes, and designs visual interfaces.
-*   🔥 **The Devil's Advocate** (`#F59E0B`) — Acts as QA reviewer, pointing out code smells, dead code blocks, and logical errors.
+### 🏛️ The Council (Multi-Agent Synthesis)
+Four expert personas evaluate each input through distinct cognitive lenses:
+*   **The Strategist** — Formulates high-level roadmaps, dependency structures, and execution plans.
+*   **The Analyst** — Evaluates performance overhead, security vulnerabilities, and raw logical validation.
+*   **The Creative** — Proposes UI/UX optimizations, creative visual assets, and out-of-the-box user flows.
+*   **The Devil's Advocate** — Inspects results for errors, assumptions, edge cases, and structural loopholes.
 
-### 🎭 Digital Twins & Clones
-*   🤖 **AI Clone** — Creates a custom linguistic style profile based on your writing samples. Your clone writes, replies, and reasons exactly like you.
-*   🛸 **AI Twin** — An autonomous assistant that handles background tasks, monitors directory paths, and auto-completes repetitive command structures.
+### 👥 Personalized Digital Twins
+*   **AI Clone** — Evaluates style, tone, and formatting patterns from your writing samples to build a personalized linguistic shadow.
+*   **AI Twin** — Runs background automations, manages project workspaces, and executes routine tasks based on high-level goals.
 
-### 🛡️ Knowledge Vaults (Private RAG)
-*   **Semantic Storage** — Crawl documentation links, index write-ups, or upload private PDFs.
-*   **Vector Retrieval** — Context-matching injects relevant facts directly into your active workspace models.
+### 📁 Knowledge Vault (Semantic RAG)
+*   **Vector Storage** — Create private document bases by indexing notes, PDFs, or crawling web documentation.
+*   **Dynamic Context Infusion** — Queries local vaults on-the-fly, bringing domain-specific source material directly into current chat contexts.
 
----
-
-## 🎨 Implemented Visual Aesthetics
-
-The PLURAL interface is designed with a premium, cybernetic sci-fi aesthetic:
-*   **Interactive CyberNetwork Canvas** — Dynamic HTML5 backdrop drawing active connection nodes following cursor coordinates.
-*   **Parallax Glow Orbs** — Ambient glassmorphism backgrounds reflecting layout movements.
-*   **Mouse-Wheel Image Sequence** — Sticky scroll sequencer giving a premium intro feeling.
-*   **3D Robotic Companion** — Interactive Spline 3D robot model responding to mouse coordinates.
+### 🎨 Visual Engineering
+*   **CyberNetwork Canvas** — Interactive vector network drawing cursor-responsive node connections.
+*   **Scroll Sequencer** — Frame-by-frame mouse sequence giving a premium entry experience.
+*   **Spline 3D Integration** — WebGL-rendered 3D workspace companion.
 
 ---
 
-## 🛠️ Cybernetic Tech Stack
+## Tech Stack
 
-| Component | Tech | Advantage |
-| :--- | :--- | :--- |
-| **Interface** | **Vanilla HTML5 & CSS3** | Custom-crafted styled panels, fluid animations, and absolute layout control |
-| **3D Assets** | **Spline 3D Loader** | WebGL-rendered 3D workspace companion model |
-| **Cloud Base** | **Supabase DB & Auth** | Real-time session syncing, workspace config storage, and API key vaulting |
-| **Highlighting** | **Highlight.js** | Tokyo Night styled dark theme markdown visualization |
-| **Processing** | **PDFJS & JSZip** | Client-side memory loading, binary parsing, and workspace exports |
+*   **Frontend Engine:** Vanilla HTML5, CSS3 Variables, ES6 JavaScript Modules
+*   **3D Space:** Spline 3D Viewer & Canvas WebGL
+*   **Database & Storage:** Supabase DB (Schema Management & Vector Storage)
+*   **File Parsing:** PDF.js Loader & JSZip Workspace Exporter
+*   **Syntax Theme:** Tokyo Night Dark via Highlight.js
 
 ---
 
-## ⚡ Setup & Verification
+## Installation & Deployment
 
+### Local Development
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/IAMONCRYPTO/PLURAL.git
+    cd PLURAL
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Configure your environment:
+    Create a `.env` file in the root directory and add your Supabase credentials:
+    ```env
+    SUPABASE_URL=your_supabase_url
+    SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+4.  Start the development server:
+    ```bash
+    node server.js
+    ```
+    Open `http://localhost:3000` to launch the console.
+
+### Production Build
+To bundle the client assets for production hosting (such as Netlify or Vercel):
 ```bash
-# 1. Clone the repository
-git clone https://github.com/IAMONCRYPTO/PLURAL.git
-
-# 2. Enter the workspace
-cd PLURAL
-
-# 3. Install core dependencies
-npm install
-
-# 4. Boot the server console
-node server.js
+node build.js
 ```
-
-Once running, navigate to `http://localhost:3000` to launch the **PLURAL Console**.
+The optimized bundle will be compiled into the `dist/` directory.
 
 ---
 
 <p align="center">
-  <sub>Developed with 💜 and absolute precision for programmers who refuse mediocre outputs.</sub>
+  <sub>Developed for engineers demanding high-integrity outputs. © 2026 PLURAL.</sub>
 </p>
