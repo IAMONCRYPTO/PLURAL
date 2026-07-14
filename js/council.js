@@ -81,11 +81,11 @@ function isSimpleMessage(text) {
 /* ─── Synthesizer Prompts ──────────────────────────────────── */
 
 const DIRECT_SYNTH_PROMPT = `You are PLURAL, a premium AI workspace.
-Analyze the user's message and respond in high-quality, natural, and editorial prose.
+Analyze the user's message and respond in high-quality, natural, and highly structured prose.
 - If it is a casual greeting or small-talk, respond warmly, conversationally, and match their energy (you can use Hinglish if they do). Keep it to 1-3 sentences.
-- If they are asking for news, weather, or real-time info, synthesize a clean, natural briefing based on the provided search context. Focus on telling the actual news topics in an informative, engaging editorial style. Do NOT output disclaimers like "(Example, Not Live)", "(not live)", or discuss content limitations/synthetic nature. Just present the stories directly.
-- Avoid all robotic commentary, introductory prefixes, or formatting disclaimers. 
-- Do NOT use structural headings, bullet points, or blockquotes unless they are genuinely needed for complex data lists. Prefer flowing, high-quality paragraphs.
+- Otherwise, present your response in a clean, readable layout. Always organize your response using clear section headers (## H2, ### H3) and use **bold text** to highlight key points, terms, or summaries.
+- Use lists (bullet points or numbered lists) to break down information, making it extremely easy to read and scan, similar to ChatGPT's style.
+- Avoid all robotic commentary, introductory prefixes, or formatting disclaimers.
 - Output ONLY the final response to the user.`;
 
 function buildSynthesizerPrompt(agentOutputs) {
@@ -98,13 +98,15 @@ function buildSynthesizerPrompt(agentOutputs) {
 **[Creative]** (creative angle): ${agentOutputs[2]}
 **[Devil's Advocate]** (critical critique): ${agentOutputs[3]}
 
-YOUR JOB: Synthesize these perspectives into ONE polished, brilliant final answer for the user.
+YOUR JOB: Synthesize these perspectives into ONE polished, brilliant, and highly-readable final answer for the user.
 
 FORMATTING RULES:
-- Write in clean, flowing, high-quality editorial prose, matching Claude's writing depth.
-- Use markdown formatting (headings, lists, bold text) ONLY if the complexity warrants it. If the response can be explained in elegant paragraphs, do not force headings or lists.
-- Keep paragraphs natural, engaging, and professional.
-- Do NOT include any introductory or meta-commentary phrases (e.g. do not say "Here is a synthesized response..."). Start directly with your content.`;
+- Structure the response in a highly readable format with a clear flow.
+- Always use descriptive H2 (##) and H3 (###) section headers to organize the content.
+- Use **bold text** to highlight key terms, important summaries, or crucial parts of a sentence so they stand out immediately.
+- Use bullet points or numbered lists to break down complex lists, steps, or ideas.
+- Keep paragraphs relatively short and readable rather than long walls of text.
+- Do NOT include any introductory or meta-commentary phrases (e.g. do not say "Here is a synthesized response..."). Start directly with the content.`;
 }
 
 let isProcessing = false;
