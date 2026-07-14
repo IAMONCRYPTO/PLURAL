@@ -237,6 +237,56 @@ function init() {
   drawerClose.addEventListener('click', closeStyleDrawer);
   drawerOverlay.addEventListener('click', closeStyleDrawer);
 
+  // ── Theme Switcher Setup ──
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  
+  const setTheme = (theme) => {
+    const root = document.documentElement;
+    const logoImgs = document.querySelectorAll('.landing-logo-img, .sidebar-brand-img, .auth-logo-img');
+    
+    if (theme === 'light') {
+      root.classList.add('theme-light');
+      localStorage.setItem('plural_theme', 'light');
+      if (themeToggleBtn) {
+        themeToggleBtn.querySelector('.moon-path').style.display = 'none';
+        themeToggleBtn.querySelector('.sun-circle').style.display = 'block';
+        themeToggleBtn.querySelectorAll('.sun-line').forEach(l => l.style.display = 'block');
+        themeToggleBtn.title = 'Switch to Dark Theme';
+      }
+      logoImgs.forEach(img => {
+        img.src = 'assets/logo-primary.png';
+      });
+    } else {
+      root.classList.remove('theme-light');
+      localStorage.setItem('plural_theme', 'dark');
+      if (themeToggleBtn) {
+        themeToggleBtn.querySelector('.moon-path').style.display = 'block';
+        themeToggleBtn.querySelector('.sun-circle').style.display = 'none';
+        themeToggleBtn.querySelectorAll('.sun-line').forEach(l => l.style.display = 'none');
+        themeToggleBtn.title = 'Switch to Normal (Light) Theme';
+      }
+      logoImgs.forEach(img => {
+        img.src = 'assets/logo-white.png';
+      });
+    }
+  };
+
+  const initTheme = () => {
+    const savedTheme = localStorage.getItem('plural_theme') || 'dark';
+    setTheme(savedTheme);
+  };
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem('plural_theme') || 'dark';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(nextTheme);
+      showToast(`${nextTheme === 'dark' ? 'Dark' : 'Normal (Light)'} Theme Activated`, 'info');
+    });
+  }
+
+  initTheme();
+
   // Settings modal toggle
   const openSettings = async () => {
     const session = await Supabase.getSession();

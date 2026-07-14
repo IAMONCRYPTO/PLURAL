@@ -4993,3 +4993,189 @@ input:checked + .slider:before {
 .landing-logo-img {
   mix-blend-mode: screen;
 }
+
+/* ── Theme Switcher Actions ───────────────────────────────────── */
+.sidebar-footer-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.settings-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  transition: var(--transition);
+  color: var(--text-muted);
+}
+
+.settings-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  border-color: var(--border-light);
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  border-color: var(--border-light);
+}
+
+/* ── Light / Normal Theme Color Schemes ────────────────────── */
+.theme-light {
+  --bg:             #F8F9FA;
+  --surface:        #FFFFFF;
+  --surface-hover:  #F1F3F5;
+  --border:         #E9ECEF;
+  --border-light:   #DEE2E6;
+  --text:           #212529;
+  --text-muted:     #495057;
+  --text-dim:       #6C757D;
+  --glow-purple:    rgba(124, 58, 237, 0.1);
+  --glow-cyan:      rgba(6, 182, 212, 0.1);
+  --glow-purple-sm: rgba(124, 58, 237, 0.05);
+  --glow-cyan-sm:   rgba(6, 182, 212, 0.05);
+}
+
+/* Light theme body override */
+.theme-light body {
+  background: #F8F9FA !important;
+  color: #212529 !important;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.04) 0, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.03) 0, transparent 40%) !important;
+}
+
+/* Light mode specific UI element tweaks */
+.theme-light .sidebar {
+  background: #FFFFFF !important;
+  border-right: 1px solid #E9ECEF !important;
+}
+
+.theme-light .sidebar-header {
+  border-bottom: 1px solid #F1F3F5 !important;
+}
+
+.theme-light .sidebar-brand-img {
+  mix-blend-mode: normal !important;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.05)) !important;
+}
+
+.theme-light .landing-logo-img {
+  mix-blend-mode: normal !important;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.04)) !important;
+}
+
+.theme-light .sidebar-footer {
+  background: #F8F9FA !important;
+  border-top: 1px solid #E9ECEF !important;
+}
+
+.theme-light .user-profile-section {
+  background: #FFFFFF !important;
+  border: 1px solid #E9ECEF !important;
+}
+
+.theme-light .settings-btn,
+.theme-light .theme-toggle-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #E9ECEF !important;
+  color: #495057 !important;
+}
+
+.theme-light .settings-btn:hover,
+.theme-light .theme-toggle-btn:hover {
+  background: #F1F3F5 !important;
+  color: #212529 !important;
+  border-color: #DEE2E6 !important;
+}
+
+.theme-light .console-header {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E9ECEF !important;
+}
+
+.theme-light .chat-input-wrapper {
+  background: #FFFFFF !important;
+  border: 1px solid #E9ECEF !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+}
+
+.theme-light .chat-input {
+  color: #212529 !important;
+}
+
+.theme-light .chat-input::placeholder {
+  color: #ADB5BD !important;
+}
+
+.theme-light .chat-input-actions {
+  border-top: 1px solid #F1F3F5 !important;
+  background: #FCFDFD !important;
+}
+
+.theme-light .agent-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E9ECEF !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+}
+
+.theme-light .agent-card:hover {
+  border-color: var(--primary) !important;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08) !important;
+}
+
+.theme-light .modal-card {
+  background: #FFFFFF !important;
+  color: #212529 !important;
+  border: 1px solid #E9ECEF !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.theme-light .welcome-badge {
+  background: rgba(124, 58, 237, 0.08) !important;
+  color: var(--primary) !important;
+}
+
+.theme-light .welcome-title span.text-glow-purple {
+  text-shadow: none !important;
+}
+
+.theme-light .welcome-title span.text-glow-cyan {
+  text-shadow: none !important;
+}
+
+.theme-light .chat-view {
+  background: #F8F9FA !important;
+}
+
+.theme-light .auth-container {
+  background: #FFFFFF !important;
+  border: 1px solid #E9ECEF !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05) !important;
+}
+
+.theme-light .auth-logo-img {
+  mix-blend-mode: normal !important;
+}
+
