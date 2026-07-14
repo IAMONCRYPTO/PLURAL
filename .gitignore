@@ -11,3 +11,5 @@ x-reply-bot/completed.txt
 **/out/
 **/.pluralcode/
 **/.next/
+*.zip
+dist.zip
