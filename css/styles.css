@@ -4373,56 +4373,45 @@ input:checked + .slider:before {
 }
 
 .message {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   margin-bottom: 24px !important;
 }
 
 .message-content {
   position: relative;
-  transform-style: preserve-3d;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.25, 1);
-  transform: translateZ(5px);
+  transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .message.user .message-content {
-  transform: translateZ(10px);
-  box-shadow: 0 15px 30px rgba(124, 58, 237, 0.18), 0 4px 8px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.15), 0 3px 6px rgba(124, 58, 237, 0.08);
   background: linear-gradient(135deg, var(--primary), #8b5cf6) !important;
   border-bottom-right-radius: 4px;
 }
 
 .message.user .message-content:hover {
-  transform: translateY(-8px) translateZ(40px) rotateX(3deg) rotateY(-3deg);
-  box-shadow: 0 30px 45px rgba(124, 58, 237, 0.35), 0 15px 15px rgba(124, 58, 237, 0.2), 0 0 30px rgba(124, 58, 237, 0.45);
+  box-shadow: 0 15px 25px rgba(124, 58, 237, 0.25), 0 6px 10px rgba(124, 58, 237, 0.15);
 }
 
 .message.assistant .message-content {
-  transform: translateZ(10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   background: var(--surface) !important;
   border-color: rgba(255, 255, 255, 0.05);
   border-bottom-left-radius: 4px;
 }
 
 .message.assistant .message-content:hover {
-  transform: translateY(-8px) translateZ(40px) rotateX(3deg) rotateY(3deg);
-  box-shadow: 0 35px 50px rgba(0, 0, 0, 0.6), 0 15px 15px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35), 0 6px 10px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .message-avatar {
-  transform: translateZ(20px);
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .message:hover .message-avatar {
-  transform: translateY(-5px) translateZ(35px) rotate(10deg);
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
 }
 
 /* ═══════════════════════════════════════════
@@ -5109,5 +5098,18 @@ input:checked + .slider:before {
 /* Hide glowing cosmic background orbs in AMOLED mode */
 .theme-amoled .parallax-orb {
   display: none !important;
+}
+
+/* Word hover readability enhancement */
+.hover-word {
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.15s ease, text-shadow 0.15s ease;
+  cursor: default;
+}
+
+.hover-word:hover {
+  transform: translateY(-2px) scale(1.04);
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
 }
 

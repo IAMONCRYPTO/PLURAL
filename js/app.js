@@ -99,31 +99,81 @@ const vaultSendBtn          = document.getElementById('vaultSendBtn');
    PREMIUM INTERACTION UTILITIES (3D & RIPPLES)
    ═══════════════════════════════════════════ */
 
-function init3DMessagePhysics(containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+function makeWordsHoverable(element) {
+  const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+  const textNodes = [];
+  let node;
+  while (node = walk.nextNode()) {
+    const parentNodeName = node.parentNode.nodeName.toLowerCase();
+    if (parentNodeName !== 'code' && parentNodeName !== 'pre' && parentNodeName !== 'script' && parentNodeName !== 'style' && parentNodeName !== 'a' && !node.parentNode.classList.contains('hover-word')) {
+      textNodes.push(node);
+    }
+  }
 
-  container.addEventListener('mousemove', (e) => {
-    const bubble = e.target.closest('.message-content');
-    if (!bubble) return;
+  for (const textNode of textNodes) {
+    const text = textNode.nodeValue;
+    const words = text.split(/(\s+)/);
+    const fragment = document.createDocumentFragment();
+    
+    for (const part of words) {
+      if (part.trim() === '') {
+        fragment.appendChild(document.createTextNode(part));
+      } else {
+        const subParts = part.split(/([.,!?;:()"'`\-–—]+)/);
+        for (const subPart of subParts) {
+          if (!subPart) continue;
+          if (/^[.,!?;:()"'`\-–—]+$/.test(subPart)) {
+            fragment.appendChild(document.createTextNode(subPart));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'hover-word';
+            span.textContent = subPart;
+            fragment.appendChild(span);
+          }
+        }
+      }
+    }
+    textNode.parentNode.replaceChild(fragment, textNode);
+  }
+}
 
-    const rect = bubble.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // Calculate rotation angles (max tilt 10 degrees)
-    const rotateX = ((centerY - y) / centerY) * 10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-
-    bubble.style.transform = `translateY(-6px) translateZ(35px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+function initWordHoverObserver() {
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const targets = [];
+            if (node.classList && (node.classList.contains('message-content') || node.classList.contains('final-answer-content') || node.classList.contains('webs-msg-content')) && !node.classList.contains('streaming')) {
+              targets.push(node);
+            }
+            targets.push(...Array.from(node.querySelectorAll('.message-content:not(.streaming), .final-answer-content:not(.streaming), .webs-msg-content:not(.streaming)')));
+            
+            targets.forEach(target => {
+              if (!target.dataset.wordsHoverable) {
+                target.dataset.wordsHoverable = 'true';
+                makeWordsHoverable(target);
+              }
+            });
+          }
+        });
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        const target = mutation.target;
+        if (target.classList && (target.classList.contains('message-content') || target.classList.contains('final-answer-content') || target.classList.contains('webs-msg-content'))) {
+          if (!target.classList.contains('streaming') && !target.dataset.wordsHoverable) {
+            target.dataset.wordsHoverable = 'true';
+            setTimeout(() => makeWordsHoverable(target), 50);
+          }
+        }
+      }
+    }
   });
 
-  container.addEventListener('mouseleave', (e) => {
-    const bubble = e.target.closest('.message-content');
-    if (bubble) bubble.style.transform = '';
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
   });
 }
 
@@ -160,9 +210,8 @@ function init() {
   // Initialize Landing Page
   initLanding();
 
-  // Initialize 3D Message Physics & Tactile Ripple Effects
-  init3DMessagePhysics('chatMessages');
-  init3DMessagePhysics('vaultChatMessages');
+  // Initialize Word Hover Observer & Tactile Ripple Effects
+  initWordHoverObserver();
   initRippleEffect();
 
   // Share to X click handler
