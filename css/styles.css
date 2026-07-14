@@ -697,104 +697,166 @@ button {
   color: var(--text);
 }
 
-/* ── Markdown Typography (upgraded) ──────────────────────────── */
-.message-content h1 {
-  font-size: 1.5em;
-  font-weight: 800;
-  color: var(--text);
-  margin: 20px 0 10px;
-  letter-spacing: -0.3px;
-  background: linear-gradient(135deg, var(--text), var(--primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── Markdown Typography (Unified ChatGPT-Style) ──────────────────────────── */
+.message-content, 
+.final-answer-content, 
+.webs-msg-content {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #e4e4e7; /* zinc-200, highly readable on dark backgrounds */
 }
 
-.message-content h2 {
-  font-size: 1.25em;
+.message-content h1,
+.final-answer-content h1,
+.webs-msg-content h1 {
+  font-size: 1.7em;
   font-weight: 700;
-  color: var(--text);
-  margin: 16px 0 8px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--border);
+  color: #ffffff !important;
+  margin: 1.6rem 0 0.8rem;
+  line-height: 1.3;
 }
 
-.message-content h3 {
+.message-content h2,
+.final-answer-content h2,
+.webs-msg-content h2 {
+  font-size: 1.4em;
+  font-weight: 650;
+  color: #ffffff !important;
+  margin: 1.4rem 0 0.7rem;
+  line-height: 1.3;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+
+.message-content h3,
+.final-answer-content h3,
+.webs-msg-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--primary) !important;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.message-content h4,
+.message-content h5,
+.message-content h6,
+.final-answer-content h4,
+.final-answer-content h5,
+.final-answer-content h6,
+.webs-msg-content h4,
+.webs-msg-content h5,
+.webs-msg-content h6 {
   font-size: 1.1em;
   font-weight: 600;
-  color: var(--primary);
-  margin: 14px 0 6px;
+  color: #e4e4e7 !important;
+  margin: 1.1rem 0 0.5rem;
 }
 
 .message-content h1:first-child,
 .message-content h2:first-child,
-.message-content h3:first-child {
+.message-content h3:first-child,
+.final-answer-content h1:first-child,
+.final-answer-content h2:first-child,
+.final-answer-content h3:first-child,
+.webs-msg-content h1:first-child,
+.webs-msg-content h2:first-child,
+.webs-msg-content h3:first-child {
   margin-top: 0;
 }
 
-.message-content p {
-  margin: 8px 0;
-}
-
-.message-content ul, .message-content ol {
-  margin: 10px 0;
-  padding-left: 22px;
-}
-
-.message-content li {
-  margin: 5px 0;
+.message-content p,
+.final-answer-content p,
+.webs-msg-content p {
+  margin-top: 0;
+  margin-bottom: 1rem;
   line-height: 1.7;
 }
 
-.message-content li::marker {
+.message-content ul, 
+.message-content ol,
+.final-answer-content ul, 
+.final-answer-content ol,
+.webs-msg-content ul, 
+.webs-msg-content ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 20px;
+}
+
+.message-content li,
+.final-answer-content li,
+.webs-msg-content li {
+  margin-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+.message-content li::marker,
+.final-answer-content li::marker,
+.webs-msg-content li::marker {
   color: var(--primary);
 }
 
-.message-content code {
+.message-content code,
+.final-answer-content code,
+.webs-msg-content code {
   background: rgba(124, 58, 237, 0.15);
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.88em;
+  font-size: 0.9em;
   font-family: 'Fira Code', 'Consolas', monospace;
+  color: #f4f4f5;
 }
 
-.message-content pre {
-  background: #0d0d14;
+.message-content pre,
+.final-answer-content pre,
+.webs-msg-content pre {
+  background: #09090d;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 14px 18px;
+  padding: 12px 16px;
   overflow-x: auto;
-  margin: 12px 0;
+  margin: 12px 0 20px 0;
 }
 
-.message-content pre code {
+.message-content pre code,
+.final-answer-content pre code,
+.webs-msg-content pre code {
   background: none;
   padding: 0;
   font-size: 13px;
   line-height: 1.5;
+  color: inherit;
 }
 
-.message-content strong {
+.message-content strong,
+.final-answer-content strong,
+.webs-msg-content strong {
   font-weight: 700;
-  color: var(--text);
+  color: #ffffff !important;
 }
 
-.message-content em {
+.message-content em,
+.final-answer-content em,
+.webs-msg-content em {
   font-style: italic;
-  color: #94a3b8;
+  color: #d4d4d8;
 }
 
-.message-content blockquote {
-  border-left: 3px solid var(--primary);
-  padding: 8px 14px;
-  margin: 12px 0;
-  background: rgba(124, 58, 237, 0.06);
+.message-content blockquote,
+.final-answer-content blockquote,
+.webs-msg-content blockquote {
+  border-left: 4px solid var(--primary);
+  padding: 6px 14px;
+  margin: 14px 0;
+  background: rgba(124, 58, 237, 0.04);
   border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-  color: #cbd5e1;
+  color: #d4d4d8;
   font-style: italic;
 }
 
-.message-content hr {
+.message-content hr,
+.final-answer-content hr,
+.webs-msg-content hr {
   border: none;
   border-top: 1px solid var(--border);
   margin: 16px 0;
@@ -1030,94 +1092,7 @@ button {
   color: var(--text);
 }
 
-/* Typography inside final answer — premium feel */
-.final-answer-content h1 {
-  font-size: 1.5em;
-  font-weight: 800;
-  margin: 16px 0 10px;
-  background: linear-gradient(135deg, var(--text), var(--primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.final-answer-content h2 {
-  font-size: 1.25em;
-  font-weight: 700;
-  margin: 14px 0 8px;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 4px;
-}
-
-.final-answer-content h3 {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: var(--primary);
-  margin: 12px 0 6px;
-}
-
-.final-answer-content h1:first-child,
-.final-answer-content h2:first-child,
-.final-answer-content h3:first-child {
-  margin-top: 0;
-}
-
-.final-answer-content p { margin: 8px 0; }
-
-.final-answer-content ul, .final-answer-content ol {
-  margin: 10px 0;
-  padding-left: 22px;
-}
-
-.final-answer-content li {
-  margin: 5px 0;
-  line-height: 1.7;
-}
-
-.final-answer-content li::marker { color: var(--primary); }
-
-.final-answer-content strong {
-  font-weight: 700;
-  color: var(--text);
-}
-
-.final-answer-content em {
-  font-style: italic;
-  color: #94a3b8;
-}
-
-.final-answer-content blockquote {
-  border-left: 3px solid var(--primary);
-  padding: 8px 14px;
-  margin: 12px 0;
-  background: rgba(124, 58, 237, 0.06);
-  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-  color: #cbd5e1;
-  font-style: italic;
-}
-
-.final-answer-content code {
-  background: rgba(124, 58, 237, 0.15);
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 0.88em;
-  font-family: 'Fira Code', 'Consolas', monospace;
-}
-
-.final-answer-content pre {
-  background: #0d0d14;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  overflow-x: auto;
-  margin: 12px 0;
-}
-
-.final-answer-content pre code {
-  background: none;
-  padding: 0;
-}
+/* Typography inside final answer is inherited from the unified markdown block above */
 
 .final-answer-content.streaming::after {
   content: '▊';
