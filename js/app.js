@@ -244,44 +244,44 @@ function init() {
     const root = document.documentElement;
     const logoImgs = document.querySelectorAll('.landing-logo-img, .sidebar-brand-img, .auth-logo-img');
     
-    if (theme === 'light') {
-      root.classList.add('theme-light');
-      localStorage.setItem('plural_theme', 'light');
+    if (theme === 'dark') {
+      root.classList.add('theme-amoled');
+      localStorage.setItem('plural_theme', 'dark');
       if (themeToggleBtn) {
         themeToggleBtn.querySelector('.moon-path').style.display = 'none';
         themeToggleBtn.querySelector('.sun-circle').style.display = 'block';
         themeToggleBtn.querySelectorAll('.sun-line').forEach(l => l.style.display = 'block');
-        themeToggleBtn.title = 'Switch to Dark Theme';
+        themeToggleBtn.title = 'Switch to Cosmic Theme';
       }
       logoImgs.forEach(img => {
-        img.src = 'assets/logo-primary.png';
+        img.src = 'assets/logo-white.png';
       });
     } else {
-      root.classList.remove('theme-light');
-      localStorage.setItem('plural_theme', 'dark');
+      root.classList.remove('theme-amoled');
+      localStorage.setItem('plural_theme', 'cosmic');
       if (themeToggleBtn) {
         themeToggleBtn.querySelector('.moon-path').style.display = 'block';
         themeToggleBtn.querySelector('.sun-circle').style.display = 'none';
         themeToggleBtn.querySelectorAll('.sun-line').forEach(l => l.style.display = 'none');
-        themeToggleBtn.title = 'Switch to Normal (Light) Theme';
+        themeToggleBtn.title = 'Switch to AMOLED Dark Theme';
       }
       logoImgs.forEach(img => {
-        img.src = 'assets/logo-white.png';
+        img.src = 'assets/logo-primary.png';
       });
     }
   };
 
   const initTheme = () => {
-    const savedTheme = localStorage.getItem('plural_theme') || 'dark';
+    const savedTheme = localStorage.getItem('plural_theme') || 'cosmic';
     setTheme(savedTheme);
   };
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = localStorage.getItem('plural_theme') || 'dark';
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const currentTheme = localStorage.getItem('plural_theme') || 'cosmic';
+      const nextTheme = currentTheme === 'cosmic' ? 'dark' : 'cosmic';
       setTheme(nextTheme);
-      showToast(`${nextTheme === 'dark' ? 'Dark' : 'Normal (Light)'} Theme Activated`, 'info');
+      showToast(`${nextTheme === 'dark' ? 'AMOLED Dark' : 'Cosmic Dark'} Theme Activated`, 'info');
     });
   }
 

@@ -5041,141 +5041,93 @@ input:checked + .slider:before {
   border-color: var(--border-light);
 }
 
-/* ── Light / Normal Theme Color Schemes ────────────────────── */
-.theme-light {
-  --bg:             #F8F9FA;
-  --surface:        #FFFFFF;
-  --surface-hover:  #F1F3F5;
-  --border:         #E9ECEF;
-  --border-light:   #DEE2E6;
-  --text:           #212529;
-  --text-muted:     #495057;
-  --text-dim:       #6C757D;
-  --glow-purple:    rgba(124, 58, 237, 0.1);
-  --glow-cyan:      rgba(6, 182, 212, 0.1);
-  --glow-purple-sm: rgba(124, 58, 237, 0.05);
-  --glow-cyan-sm:   rgba(6, 182, 212, 0.05);
+/* ── AMOLED Pitch Black Theme overrides ────────────────────── */
+.theme-amoled {
+  --bg:             #000000;
+  --surface:        #060608;
+  --surface-hover:  #0C0C10;
+  --border:         #111116;
+  --border-light:   #181822;
+  --glow-purple:    rgba(124, 58, 237, 0.2);
+  --glow-cyan:      rgba(6, 182, 212, 0.2);
+  --glow-purple-sm: rgba(124, 58, 237, 0.08);
+  --glow-cyan-sm:   rgba(6, 182, 212, 0.08);
 }
 
-/* Light theme body override */
-.theme-light body {
-  background: #F8F9FA !important;
-  color: #212529 !important;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.04) 0, transparent 40%),
-    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.03) 0, transparent 40%) !important;
+.theme-amoled body {
+  background: #000000 !important;
+  background-image: none !important; /* Remove cosmic gradients */
 }
 
-/* Light mode specific UI element tweaks */
-.theme-light .sidebar {
-  background: #FFFFFF !important;
-  border-right: 1px solid #E9ECEF !important;
+.theme-amoled .sidebar {
+  background: #000000 !important;
+  border-right: 1px solid #111116 !important;
 }
 
-.theme-light .sidebar-header {
-  border-bottom: 1px solid #F1F3F5 !important;
+.theme-amoled .sidebar-footer {
+  background: #040406 !important;
+  border-top: 1px solid #111116 !important;
 }
 
-.theme-light .sidebar-brand-img {
-  mix-blend-mode: normal !important;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.05)) !important;
+.theme-amoled .user-profile-section {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
 }
 
-.theme-light .landing-logo-img {
-  mix-blend-mode: normal !important;
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.04)) !important;
+.theme-amoled .settings-btn,
+.theme-amoled .theme-toggle-btn {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
 }
 
-.theme-light .sidebar-footer {
-  background: #F8F9FA !important;
-  border-top: 1px solid #E9ECEF !important;
+.theme-amoled .settings-btn:hover,
+.theme-amoled .theme-toggle-btn:hover {
+  background: #0C0C10 !important;
+  border-color: #181822 !important;
 }
 
-.theme-light .user-profile-section {
-  background: #FFFFFF !important;
-  border: 1px solid #E9ECEF !important;
+.theme-amoled .console-header {
+  background: #000000 !important;
+  border-bottom: 1px solid #111116 !important;
 }
 
-.theme-light .settings-btn,
-.theme-light .theme-toggle-btn {
-  background: #FFFFFF !important;
-  border: 1px solid #E9ECEF !important;
-  color: #495057 !important;
+.theme-amoled .chat-input-wrapper {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45) !important;
 }
 
-.theme-light .settings-btn:hover,
-.theme-light .theme-toggle-btn:hover {
-  background: #F1F3F5 !important;
-  color: #212529 !important;
-  border-color: #DEE2E6 !important;
+.theme-amoled .chat-input-actions {
+  border-top: 1px solid #111116 !important;
+  background: #030304 !important;
 }
 
-.theme-light .console-header {
-  background: #FFFFFF !important;
-  border-bottom: 1px solid #E9ECEF !important;
+.theme-amoled .agent-card {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
 }
 
-.theme-light .chat-input-wrapper {
-  background: #FFFFFF !important;
-  border: 1px solid #E9ECEF !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+.theme-amoled .modal-card {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
 }
 
-.theme-light .chat-input {
-  color: #212529 !important;
+.theme-amoled .chat-view {
+  background: #000000 !important;
 }
 
-.theme-light .chat-input::placeholder {
-  color: #ADB5BD !important;
+.theme-amoled .auth-container {
+  background: #060608 !important;
+  border: 1px solid #111116 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
 }
 
-.theme-light .chat-input-actions {
-  border-top: 1px solid #F1F3F5 !important;
-  background: #FCFDFD !important;
-}
-
-.theme-light .agent-card {
-  background: #FFFFFF !important;
-  border: 1px solid #E9ECEF !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
-}
-
-.theme-light .agent-card:hover {
-  border-color: var(--primary) !important;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08) !important;
-}
-
-.theme-light .modal-card {
-  background: #FFFFFF !important;
-  color: #212529 !important;
-  border: 1px solid #E9ECEF !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-}
-
-.theme-light .welcome-badge {
-  background: rgba(124, 58, 237, 0.08) !important;
-  color: var(--primary) !important;
-}
-
-.theme-light .welcome-title span.text-glow-purple {
-  text-shadow: none !important;
-}
-
-.theme-light .welcome-title span.text-glow-cyan {
-  text-shadow: none !important;
-}
-
-.theme-light .chat-view {
-  background: #F8F9FA !important;
-}
-
-.theme-light .auth-container {
-  background: #FFFFFF !important;
-  border: 1px solid #E9ECEF !important;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05) !important;
-}
-
-.theme-light .auth-logo-img {
-  mix-blend-mode: normal !important;
+/* Ensure white logo has screen mix blend mode back on in dark/amoled mode */
+.theme-amoled .sidebar-brand-img,
+.theme-amoled .landing-logo-img,
+.theme-amoled .auth-logo-img {
+  mix-blend-mode: screen !important;
+  filter: none !important;
 }
 
