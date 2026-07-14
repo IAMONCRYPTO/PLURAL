@@ -254,7 +254,7 @@ function init() {
         themeToggleBtn.title = 'Switch to Cosmic Theme';
       }
       logoImgs.forEach(img => {
-        img.src = 'assets/logo-white.png';
+        img.src = 'assets/logo-white.png?v=2';
       });
     } else {
       root.classList.remove('theme-amoled');
@@ -266,7 +266,7 @@ function init() {
         themeToggleBtn.title = 'Switch to AMOLED Dark Theme';
       }
       logoImgs.forEach(img => {
-        img.src = 'assets/logo-primary.png';
+        img.src = 'assets/logo-primary.png?v=2';
       });
     }
   };
