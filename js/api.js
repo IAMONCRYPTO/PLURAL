@@ -3,10 +3,10 @@ import { Storage } from './storage.js';
 export const MODELS = {
   STRATEGIST: 'nvidia/llama-3.3-nemotron-super-49b-v1',
   ANALYST:    'nvidia/nemotron-3-ultra-550b-a55b',
-  CREATIVE:   'moonshotai/kimi-k2.6',
+  CREATIVE:   'meta/llama-3.3-70b-instruct',
   DEVIL:      'nvidia/nemotron-3-super-120b-a12b',
   SYNTHESIZER:'nvidia/llama-3.3-nemotron-super-49b-v1',
-  CLONE:      'moonshotai/kimi-k2.6',
+  CLONE:      'meta/llama-3.3-70b-instruct',
   TWIN:       'nvidia/llama-3.3-nemotron-super-49b-v1',
 };
 

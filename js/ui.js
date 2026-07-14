@@ -22,10 +22,14 @@ export function renderMarkdown(text) {
   // 2. Inline code
   html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
 
-  // 3. Headers (Headlines and Subheadlines)
-  html = html.replace(/^###[ \t]+(.+)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^##[ \t]+(.+)$/gm, '<h2>$1</h2>');
-  html = html.replace(/^#[ \t]+(.+)$/gm, '<h1>$1</h1>');
+  // 3. Headers (Headlines and Subheadlines - H1 to H6)
+  // Handles leading/trailing spaces, carriage returns (\r), and optional closing hashes (#)
+  html = html.replace(/^[ \t]*######[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h6>$1</h6>');
+  html = html.replace(/^[ \t]*#####[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h5>$1</h5>');
+  html = html.replace(/^[ \t]*####[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h4>$1</h4>');
+  html = html.replace(/^[ \t]*###[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h3>$1</h3>');
+  html = html.replace(/^[ \t]*##[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h2>$1</h2>');
+  html = html.replace(/^[ \t]*#[ \t]+([^\r\n]+?)(?:[ \t]*#*)?\r?$/gm, '<h1>$1</h1>');
 
   // 4. Blockquotes
   html = html.replace(/^&gt;[ \t]+(.+)$/gm, '<blockquote>$1</blockquote>');
@@ -50,7 +54,7 @@ export function renderMarkdown(text) {
   const processedLines = lines.map(line => {
     const trimmed = line.trim();
     if (!trimmed) return '';
-    if (/^<(?:h1|h2|h3|li|ul|ol|blockquote|pre|code|hr)/.test(trimmed)) {
+    if (/^<(?:h1|h2|h3|h4|h5|h6|li|ul|ol|blockquote|pre|code|hr)/.test(trimmed)) {
       return line;
     }
     return `<p>${line}</p>`;
